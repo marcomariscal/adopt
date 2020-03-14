@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block content
+%}
+<div class="container-fluid">
+  <h1>Pets</h1>
+  <div class="row">
+    {% for pet in pets %}
+    <div class="col-md-3">
+      {% if pet.photo_url %}
+      <img
+        src="{{ pet.photo_url }}"
+        alt="{{ pet.name }}"
+        class="img-thumbnail"
+      />
+      {% endif %}
+      <div>
+        <a href="/{{ pet.id }}">
+          <p class="text-info">
+            {{ pet.name }} {% if pet.available %}
+            <span class="text-secondary"><b>is available!</b></span>
+          </p>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <a class="btn btn-info" href="/add">Add A Pet</a>
+</div>
+{% endblock %}
